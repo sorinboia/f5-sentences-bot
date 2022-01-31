@@ -4,10 +4,10 @@ const argv = require('yargs').argv;
 const clientsNumber = argv.clients || 1;
 const targerUrl = argv.url || 'https://a-sahar-apm.emea-ent.f5demos.com/';
 
+const attacker = argv.attacker || false ;
 
-
-
-const selectors = ['adjective','animal','color', 'location'];
+const webAttacks = ['" or ""="', '<script>alert("xss")</script>']
+const selectors = ['adjective', 'animal', 'color', 'location'];
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -20,13 +20,16 @@ const main = async () => {
         const client = new (require('./puppet'))( {
             targetUrl: targerUrl,
             puppetOptions: {
-                headless: true
+                headless: false
             }
         });
     
         try {            
-            await client.init();                                    
-            await client.enterWord(selectors[getRandomInt(0,3)], getRandomInt(1000000,9999999).toString());            
+            await client.init();
+            
+            const word = attacker ? webAttacks[getRandomInt(0,webAttacks.length - 1 )] : getRandomInt(1000000,9999999).toString();
+            await client.enterWord(selectors[getRandomInt(0,3)], word);                           
+                    
             await client.wait(5000);
             await client.close();
         } catch(e) {            
@@ -53,7 +56,3 @@ const client = async (clientId) => {
     process.exit(1);
 });
     
-
-
-
-

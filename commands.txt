@@ -1,0 +1,1 @@
+docker run -d --env CLIENTS=2 sorinboiaf5/f5-sentences-bot:latest

@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "name": "f5-sentences-bot",
+    "namespace": "s-boiangiu",
+    "labels": {},
+    "annotations": {},
+    "description": "",
+    "disable": false
+  },
+  "spec": {
+    "simple_service": {
+      "container": {
+        "name": "f5-sentence-bot",
+        "image": {
+          "name": "registry.hub.docker.com/sorinboiaf5/f5-sentences-bot:latest",
+          "container_registry": {
+            "tenant": "f5-emea-ent-bceuutam",
+            "namespace": "s-boiangiu",
+            "name": "sorin-docker"
+          },
+          "pull_policy": "IMAGE_PULL_POLICY_DEFAULT"
+        },
+        "init_container": false,
+        "flavor": "CONTAINER_FLAVOR_TYPE_TINY",
+        "command": [],
+        "args": []
+      },
+      "configuration": {
+        "parameters": [
+          {
+            "env_var": {
+              "name": "CLIENTS",
+              "value": "2"
+            }
+          }
+        ]
+      },
+      "do_not_advertise": {},
+      "disabled": {},
+      "scale_to_zero": false
+    }
+  }
+}
