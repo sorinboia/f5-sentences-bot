@@ -1,12 +1,11 @@
 const argv = require('yargs').argv;
-
+console.log(argv);
 
 const clientsNumber = argv.clients || 1;
-const targerUrl = argv.url || 'https://a-sahar-apm.emea-ent.f5demos.com/';
+const targerUrl = argv.url || 'https://demo-partner.emea-ent.f5demos.com/';
+const attacker = argv.attacker === 'true'|| false ;
 
-const attacker = argv.attacker || false ;
-
-const webAttacks = ['" or ""="', '<script>alert("xss")</script>']
+const webAttacks = ['../../../../etc/test.txt', '<script>alert("xss")</script>', 'dummy at the end it wont be actually used'];
 const selectors = ['adjective', 'animal', 'color', 'location'];
 
 function getRandomInt(min, max) {
@@ -20,7 +19,7 @@ const main = async () => {
         const client = new (require('./puppet'))( {
             targetUrl: targerUrl,
             puppetOptions: {
-                headless: false
+                headless: true
             }
         });
     

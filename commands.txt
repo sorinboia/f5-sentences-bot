@@ -1,1 +1,6 @@
 docker run -d --env CLIENTS=2 sorinboiaf5/f5-sentences-bot:latest
+
+docker build -t sorinboiaf5/f5-sentences-bot:latest .
+
+
+docker run --env CLIENTS=2 --env ATTACKER=true --env TARGETURL=https://e4ca057a-9dd7-46ad-b162-c809d0b5686f.access.udf.f5.com/ sorinboiaf5/f5-sentences-bot:latest

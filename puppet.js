@@ -67,9 +67,9 @@ class Puppet {
     }
 
     async enterWord(selector,text) {
-        await this.page.waitForSelector(`.plus-icon#${selector}`,{visible: true});                        
+        await this.page.waitForSelector(`.grid-item#${selector} > .plus-icon`,{visible: true});                        
 
-        const word = await this.page.$(`.plus-icon#${selector}`);            
+        const word = await this.page.$(`.grid-item#${selector} > .plus-icon`);            
         await word.click();
         await this.inputText('id=prompt-input',text);
         
